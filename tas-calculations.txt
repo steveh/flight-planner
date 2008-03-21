@@ -1,0 +1,128 @@
+# This is from a forum post on pprune.org
+# This plus wikipedia is where I got my calculations from
+
+SPEED CALCULATIONS
+
+Sorry for the late reply L Peacock, but better late than never. I warned you that it was complex, but here it is in a slightly simplified fashion.
+
+All calculations are for Pressure Height, Valid from -1000 feet to 82021 feet of Pressure Height, with the Tropopause at 36089.24 feet.
+
+To convert from Metres to Feet –
+Feet = Metres / 0.3048
+
+All Temperatures are in °C, to convert from Fahrenheit to Celcius –
+Temperature °C = (°F-32) X 5/9
+
+All working is in °Absolute (Kelvin), to convert from °C to °K (Kelvin) –
+Absolute Temperature °K = °C + 273.15
+
+All Pressures are in hPa, to convert from Inches of Mercury (“Hg) to hPa –
+Pressure (hPa) = Pressure (Inches of Mercury) X 33.869
+
+It will be necessary to know the ISA Standard Temperature (Ts) for the Pressure Height, and the Static Pressure (Ps) for the Pressure Height.
+
+For Sea Level –
+Standard Temperature (To) °K = 288.15°K
+Standard Pressure (Po) = 1013.25 hPa
+
+For the Pressure Height –
+Standard Temperature (Ts) °K = 288.15 – PH X .0019812 to 36089.24 feet, and 216.65°K thereafter (to 82021 feet).
+
+It is necessary to calculate the Mean Temperature (Tm) of the column of air to the Pressure Height, Note that this is NOT the arithmetic mean –
+
+Tm = ((SQR 288.15 +SQR Ts)/2)^2 to 36089.24 feet.
+(It is not necessary to make this calculation above 36089.24 feet).
+
+Up to 36089.24 ft : Ps = 1013.25 / 10 ^ (PH / 220.82682 / Tm)
+Above 36089.24 ft : Ps =1282.03 / 10 ^ (PH / 47912.5808)
+
+Some Examples from these formulae –
+10000 ft : Ts = 268.338°K : Tm = 278.156°K : Ps = 696.49 hPa
+35000 ft : Ts = 218.808°K : Tm = 252.289°K : Ps = 238.50 hPa
+45000 ft : Ts = 216.650°K : Tm = 216.650°K : Ps = 147.46 hPa (Tm above Tropopause)
+
+The purists will note minor errors here, the formulae are extremely complex, and simplified for practical purposes. The Ps errors amount to accuracy within the equivalent of 10 feet of Pressure Height to 35000 feet, and within 15 feet from 35000 to 60000 feet, resulting in not more than 0.1 Kt error in speed.
+
+DENSITY RATIO
+
+Density Ratio is the ratio of the Density at the Pressure Height to that at Sea Level. Density is Pressure divided by temperature. For Simple Speed calculations, the Inverse Density Ratio (IDR) is more useful, i.e. the ratio of Sea Level Density to the Density at Altitude.
+
+IDR = Po / To X Ts / Ps
+
+For the 10,000 ft example –
+IDR = 1013.25 / 288.15 X 278.156 / 696.49 = 1.404337638
+
+NOTE – The data used here was for ISA temperature. In ‘off’ ISA conditions, actual Temperature SAT (as °K of course) should be used in lieu of the standard temperature (Ts) at altitude, e.g. in ISA+10°C conditions in the example, use 288.156 (SAT) instead of the standard 278.156 for the Ts input.
+
+DENSITY AIRSPEED, AN APPROXIMATE
+
+For Low Altitude and Low speed operations, e.g. up to 200 KIAS and 10,000 feet, correction for Density alone suffices for a reasonably accurate TAS calculation. This calculation assumes that CAS = EAS, i.e. dynamic pressure alone (EAS) is close to Impact Pressure (CAS). Although used as TAS, calculation of TAS using CAS and Density alone is, strictly speaking, Density Airspeed, DAS.
+
+DAS = CAS X SQR (IDR)
+
+For the example of 150 CAS at 10000 feet,
+DAS = 150 X SQR 1.404337638 = 177.8 Kt.
+
+This compares to an actual TAS of 174.1, an error of 3.7 Kt, acceptable to most people. In an ideal world, where aircraft had EAS indicators, this method could be used at all altitudes with accuracy. At higher speeds and altitudes, increasing Mach Number causes a much greater difference between Impact and Dynamic Pressure, and such a method becomes unacceptable. For example, a CAS of 300 Kt at 35000 feet yields a DAS of 538.8 Kt, Vs a TAS of 503.6 Kt, an unacceptable 35.2 Kt error. Thus, at higher speeds and altitudes, compressibility MUST be considered (the ‘f’ factor), and compressibility relates directly to Mach Number. This leaves 2 options, either calculate the ‘f’ factor (a useless number for further operations), or the Mach Number, which has considerable use in other areas. This latter option is chosen for further calculations.
+
+ACCURATE SPEED CALCULATIONS
+
+Excepting low and slow speed calculations, compressibility MUST be considered. An example will be given here for an aircraft at CAS = 300 Kt at 35000 feet, and SAT of -45°C (ISA + 9.342°C).
+
+The steps are as follows –
+
+As previously described, find the Static Pressure (Ps) at the Pressure Height. It is vital that the Static Pressure be calculated using the STANDARD Temperature for 35000 feet, NOT the actual Temperature (SAT).
+
+For the example, as previously found, Ps = 238.50 hPa at 35,000 feet.
+
+CONVERT CAS TO MACH NUMBER
+
+Mach No = SQR (5 X (Po / Ps X (CAS^2 / K + 1) ^ 3.5 – Po / Ps + 1) ^ (2/7) – 5)
+Where : Po = 1013.25 (Sea Level Standard Pressure),
+Ps = Standard Pressure at the Pressure Height, and
+K= 2188648.141 (a constant))
+
+Note that Temperature has no influence upon the conversion from CAS to Mach Number, only CAS and Pressure.
+For CAS = 300 at 35000 ft, Mach No. = 0.8733
+
+CONVERT MACH NUMBER TO TAS
+
+NOW, use the actual Absolute Temperature (SAT), -45°C = 228.15°K
+
+TAS = Mach No. X 38.975 X SQR (Absolute Temperature)
+
+For the example, Mach 0.8733 at 228.15°K = 514.1 Kt TAS.
+
+CALCULATING EAS (If you’re interested)
+
+Essentially, this is the reverse of the Density Airspeed (DAS) calculation, but using the ACTUAL Density Ratio, that is, using the Actual Temperature instead of the Standard Temperature.
+
+EAS = TAS X SQR (Ps / SAT°K X To / Po)
+
+For the example, EAS = 514.1 X SQR (238.50 / 228.15 X 288.15 / 1013.25) = 280.3 Kt.
+Thus, although the Airspeed Indicator displays 300 Knots, the actual ‘Aerodynamic Value’ of the airspeed (Dynamic Pressure) is only 280.3 Kt.
+
+That’s the complete speed picture. TAT, RAT etc., haven’t been covered. To summarise the procedure –
+
+Calculate the Standard Temperature at the Pressure Height –
+Ts (°C) = 15 – PH X .0019812 to 36089.24 ft, then -56.5°C above.
+
+Convert Ts (°C) to Absolute Temperature –
+Ts (°K) = Ts (°C) + 273.15
+
+Calculate the Mean Temperature of the air column (not above 36089.24 ft) –
+Tm = ((SQR 288.15 + SQR Ts °K) / 2 ) ^ 2
+
+Calculate the Standard Pressure (Ps) at the Pressure Height –
+Up to 36089.24 ft : Ps = 1013.25 / 10 ^ (PH / 220.82682 / Tm)
+Above 36089.24 ft : Ps =1282.03 / 10 ^ (PH / 47912.5808)
+
+Convert CAS to Mach Number –
+Mach No = SQR (5 X (Po / Ps X (CAS^2 / K + 1) ^ 3.5 – Po / Ps + 1) ^ (2/7) – 5)
+Where K= 2188648.141 (a constant))
+
+Convert Mach Number to TAS –
+TAS = Mach No. X 38.975 X SQR (SAT °K)
+
+Calculate EAS (if you want) –
+EAS = TAS X SQR (Ps / SAT°K X To / Po) 
